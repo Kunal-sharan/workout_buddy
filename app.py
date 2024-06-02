@@ -62,17 +62,7 @@ if text and  len(text) > 0:
         s+=r[i]
     res = ast.literal_eval(s) 
     st.session_state.workouts.append(res)
-    audio_file_path="audio_input.wav"
-    if os.path.exists(audio_file_path):
-      os.remove(audio_file_path)
-      alert=st.success(f"File '{audio_file_path}' deleted successfully.")
-      time.sleep(2) # Wait for 3 seconds
-      alert.empty() # Clear the alert
-  
-    else:
-      alert=st.error("The file does not exist")
-      time.sleep(2) # Wait for 3 seconds
-      alert.empty() # Clear the alert
+    
 @st.experimental_fragment
 def fragment():
       Show=st.button("Show workouts")
