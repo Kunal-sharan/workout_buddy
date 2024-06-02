@@ -2,7 +2,7 @@ import streamlit as st
 from audiorecorder import audiorecorder
 import speech_recognition as sr
 import os
-# from langchain_core.output_parsers import JsonOutputParser
+from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
@@ -10,7 +10,7 @@ import time
 import ast
 llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=st.secrets['GOOGLE_API'])
 
-# parser = JsonOutputParser()
+parser = JsonOutputParser()
 
 prompt = PromptTemplate(
     template="Answer the user query.\n{format_instructions} with 'Target Muscle','Workout','Reps per set','Sets'\n{query}\n",
