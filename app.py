@@ -39,8 +39,8 @@ if len(audio) > 0:
     with sr.AudioFile("audio_input.wav") as source:
       a=r.record(source)
       text=r.recognize_google(a)
-    if len(text)>0:
-      text=llm.invoke(f"The given text is related to gym analyze the complete text and fix it if random or wrong words are written make it proper don't add any extra information {text} your ouput should be a one line sentence that only containes these things  'Target Muscle','Workout','Reps per set','Sets' and make sure the 'Sets'  is not more than 4 ")
+    # if len(text)>0:
+    #   text=llm.invoke(f"The given text is related to gym analyze the complete text and fix it if random or wrong words are written make it proper don't add any extra information {text} your ouput should be a one line sentence that only containes these things  'Target Muscle','Workout','Reps per set','Sets' and make sure the 'Sets'  is not more than 4 ")
     st.write(text)
     res=chain.invoke({"query": str(text)})
     st.session_state.workouts.append(res)
