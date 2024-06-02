@@ -6,6 +6,7 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
+import time
 llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=st.secrets['GOOGLE_API'])
 
 parser = JsonOutputParser()
@@ -30,10 +31,9 @@ audio = audiorecorder("", "")
 if len(audio) > 0:
     # # To play audio in frontend:
     # st.audio(audio.export().read())
-
     # To save audio to a file, use pydub export method:
     audio.export("audio_input.wav", format="wav")
-
+    
     # To get audio properties, use pydub AudioSegment properties:
     # st.write(f"Frame rate: {audio.frame_rate}, Frame width: {audio.frame_width}, Duration: {audio.duration_seconds} seconds")
     with sr.AudioFile("audio_input.wav") as source:
@@ -47,7 +47,10 @@ if len(audio) > 0:
     audio_file_path="audio_input.wav"
     if os.path.exists(audio_file_path):
       os.remove(audio_file_path)
-      st.success(f"File '{audio_file_path}' deleted successfully.")
+      alert=st.success(f"File '{audio_file_path}' deleted successfully.")
+      time.sleep(1) # Wait for 3 seconds
+      alert.empty() # Clear the alert
+  
     else:
       st.error("The file does not exist")
 @st.experimental_fragment
