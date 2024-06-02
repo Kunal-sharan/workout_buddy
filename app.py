@@ -32,8 +32,8 @@ st.set_page_config(layout="wide")
 st.title("Workout Tracker")
 text = speech_to_text(
     language='en',
-    start_prompt="Start recording",
-    stop_prompt="Stop recording",
+    start_prompt="",
+    stop_prompt="",
     just_once=False,
     use_container_width=False,
     callback=None,
