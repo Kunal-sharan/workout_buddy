@@ -21,7 +21,7 @@ chain = prompt | llm | parser
 
 # res=chain.invoke({"query": gym_query})
 r = sr.Recognizer()
-
+df=None
 
 if "workouts" not in st.session_state:
   st.session_state.workouts=[]
@@ -66,8 +66,7 @@ fragment()
 def clear_df():
     de=st.button("Delete Workouts")
     if de:
-        if "workouts" in st.session_state and len(st.session_state.workouts)>0:
-          df=pd.DataFrame(st.session_state.workouts)
+        if df:
           df.drop(df.index , inplace=True)
           st.dataframe(df)
 clear_df()        
