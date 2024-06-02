@@ -25,7 +25,6 @@ r = sr.Recognizer()
 if "workouts" not in st.session_state:
   st.session_state.workouts=[]
 text=""
-st.set_page_config(layout='wide')
 st.title("Workout Tracker")
 audio = audiorecorder("", "")
 if len(audio) > 0:
@@ -62,7 +61,14 @@ def fragment():
           df=pd.DataFrame(st.session_state.workouts)
           st.dataframe(df)
 fragment()
-    
+@st.experimental_fragment
+def clear_df():
+    de=st.button("Delete Workouts")
+    if de:
+        if df:
+          df.drop(df.index , inplace=True)
+          st.dataframe(df)
+clear_df()        
 
 # import streamlit as st
 
