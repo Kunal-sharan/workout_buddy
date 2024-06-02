@@ -15,7 +15,7 @@ llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=st.secrets['GOOGLE_A
 parser = JsonOutputParser()
 
 prompt = PromptTemplate(
-    template="Answer the user query.\n{format_instructions} with 'Target Muscle','Workout','Reps per set','Sets'\n{query}\n",
+    template="Answer the user query.\n{format_instructions} with 'Target Muscle','Workout','Weigth','Reps','Sets'\n{query} if any of the data is missing in the user query put N/A their \n",
     input_variables=["query"],
     partial_variables={"format_instructions": parser.get_format_instructions()},
 )
