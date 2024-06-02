@@ -41,7 +41,7 @@ text = speech_to_text(
     kwargs={},
     key=None
 )
-if len(text) > 0:
+if text and  len(text) > 0:
     # # To play audio in frontend:
     # st.audio(audio.export().read())
     # To save audio to a file, use pydub export method:
