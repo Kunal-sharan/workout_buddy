@@ -6,12 +6,12 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
-llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key=st.secrets['GOOGLE_API'])
+llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=st.secrets['GOOGLE_API'])
 
 parser = JsonOutputParser()
 
 prompt = PromptTemplate(
-    template="Answer the user query.\n{format_instructions} with 'Target Muscle','Workout','Reps','Sets'\n{query}\n",
+    template="Answer the user query.\n{format_instructions} with 'Target Muscle','Workout','Reps per set','Sets'\n{query}\n",
     input_variables=["query"],
     partial_variables={"format_instructions": parser.get_format_instructions()},
 )
@@ -39,8 +39,8 @@ if len(audio) > 0:
     with sr.AudioFile("audio_input.wav") as source:
       a=r.record(source)
       text=r.recognize_google(a)
-    # if len(text)>0:
-    #   text=llm.invoke(f"The given text is related to gym analyze the complete text and fix it if random or wrong words are written make it proper don't add any extra information {text}")
+    if len(text)>0:
+      text=llm.invoke(f"The given text is related to gym analyze the complete text and fix it if random or wrong words are written make it proper don't add any extra information {text} your ouput should be a one line sentence that only containes these things  'Target Muscle','Workout','Reps per set','Sets' ")
     st.write(text)
     res=chain.invoke({"query": str(text)})
     st.session_state.workouts.append(res)
