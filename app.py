@@ -25,6 +25,7 @@ r = sr.Recognizer()
 if "workouts" not in st.session_state:
   st.session_state.workouts=[]
 text=""
+st.set_page_config(layout='wide')
 st.title("Workout Tracker")
 audio = audiorecorder("", "")
 if len(audio) > 0:
