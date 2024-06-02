@@ -62,6 +62,15 @@ def fragment():
           df=pd.DataFrame(st.session_state.workouts)
           st.dataframe(df)
 fragment()
+@st.experimental_fragment
+def clear_df():
+    de=st.button("Delete Workouts")
+    if de:
+        if "workouts" in st.session_state and len(st.session_state.workouts)>0:
+          df=pd.DataFrame(st.session_state.workouts)
+          df.drop(df.index , inplace=True)
+          st.dataframe(df)
+clear_df()        
 
 # import streamlit as st
 
