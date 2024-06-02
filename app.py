@@ -65,8 +65,8 @@ if text and  len(text) > 0:
     
 @st.experimental_fragment
 def fragment():
-      Show=st.button("Show workouts")
-      if Show:
+      # Show=st.button("Show workouts")
+      # if Show:
         if "workouts" in st.session_state and len(st.session_state.workouts)>0:
           # st.write(st.session_state.workouts)
           df=pd.DataFrame(st.session_state.workouts)
