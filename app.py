@@ -7,6 +7,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
 import time
+import ast
 llm = GoogleGenerativeAI(model="gemini-pro", google_api_key=st.secrets['GOOGLE_API'])
 
 parser = JsonOutputParser()
@@ -43,6 +44,11 @@ if len(audio) > 0:
     #   text=llm.invoke(f"The given text is related to gym analyze the complete text and fix it if random or wrong words are written make it proper don't add any extra information {text} your ouput should be a one line sentence that only containes these things  'Target Muscle','Workout','Reps per set','Sets' and make sure the 'Sets'  is not more than 4 ")
     st.write(text)
     res=chain.invoke({"query": str(text)})
+    r=list(str(res))
+    s=""
+    for i in range(r.index('{'),r.index('}')+1):
+        s+=r[i]
+    res = ast.literal_eval(s) 
     st.session_state.workouts.append(res)
     audio_file_path="audio_input.wav"
     if os.path.exists(audio_file_path):
