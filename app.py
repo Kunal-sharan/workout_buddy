@@ -6,7 +6,7 @@ from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_google_genai import GoogleGenerativeAI
 import pandas as pd
-llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key="AIzaSyDCV8cTbcroVnMjEYod1VBjx05GCGyBatw")
+llm = GoogleGenerativeAI(model="models/text-bison-001", google_api_key=st.secrets['GOOGLE_API'])
 
 parser = JsonOutputParser()
 
