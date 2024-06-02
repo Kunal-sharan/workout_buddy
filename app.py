@@ -48,11 +48,13 @@ if len(audio) > 0:
     if os.path.exists(audio_file_path):
       os.remove(audio_file_path)
       alert=st.success(f"File '{audio_file_path}' deleted successfully.")
-      time.sleep(1) # Wait for 3 seconds
+      time.sleep(2) # Wait for 3 seconds
       alert.empty() # Clear the alert
   
     else:
-      st.error("The file does not exist")
+      alert=st.error("The file does not exist")
+      time.sleep(2) # Wait for 3 seconds
+      alert.empty() # Clear the alert
 @st.experimental_fragment
 def fragment():
       Show=st.button("Show workouts")
