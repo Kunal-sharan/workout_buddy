@@ -21,7 +21,6 @@ chain = prompt | llm | parser
 
 # res=chain.invoke({"query": gym_query})
 r = sr.Recognizer()
-df=None
 
 if "workouts" not in st.session_state:
   st.session_state.workouts=[]
